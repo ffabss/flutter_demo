@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="451bdc65-578f-4f16-8255-c9d285a6ea39" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1YOfWqAONL0JTlEVWFbK5yfXxvQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1582818221577" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\HTL\Diplomarbeit\flutter_demo\lib\screens" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="451bdc65-578f-4f16-8255-c9d285a6ea39" name="Default Changelist" comment="" />
+      <created>1582732868969</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582732868969</updated>
+      <workItem from="1582732884873" duration="323000" />
+      <workItem from="1582735964890" duration="3008000" />
+      <workItem from="1582742636018" duration="1436000" />
+      <workItem from="1582812926667" duration="5377000" />
+      <workItem from="1582818603114" duration="89000" />
+      <workItem from="1582818707522" duration="39000" />
+      <workItem from="1582818761568" duration="1713000" />
+      <workItem from="1582820705407" duration="12524000" />
+      <workItem from="1582887308699" duration="268000" />
+      <workItem from="1582887675870" duration="50000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/schauerDemoFlutter" />
+    </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="70" key="#Plugins" timestamp="1582818746237">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#Plugins/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582818746237" />
+    <state x="361" y="70" key="#Project_Structure" timestamp="1582820492179">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#Project_Structure/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582820492179" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582842035770">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582842035770" />
+    <state x="684" y="165" key="#xdebugger.XInspectDialog" timestamp="1582841688637">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="684" y="165" key="#xdebugger.XInspectDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582841688637" />
+    <state x="393" y="6" key="CommitChangelistDialog2" timestamp="1582887881574">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="393" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582887881574" />
+    <state width="468" height="466" key="DebuggerActiveHint" timestamp="1582841759691">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="468" height="466" key="DebuggerActiveHint/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582841759691" />
+    <state width="1493" height="373" key="GridCell.Tab.0.bottom" timestamp="1582846407974">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="373" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582846407974" />
+    <state width="1493" height="373" key="GridCell.Tab.0.center" timestamp="1582846407974">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="373" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582846407974" />
+    <state width="1493" height="373" key="GridCell.Tab.0.left" timestamp="1582846407974">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="373" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582846407974" />
+    <state width="1493" height="373" key="GridCell.Tab.0.right" timestamp="1582846407974">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="373" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582846407974" />
+    <state x="277" y="54" key="SettingsEditor" timestamp="1582887726218">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582818678133" />
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582887726218" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+</project>
