@@ -65,8 +65,8 @@ class _SocketScreenState extends State<SocketScreen> {
         ]);
     await alert.show();
     if(_portController.value.text.isEmpty || _ipController.value.text.isEmpty)return;
-    int port = int.parse(_portController.value.text);
-    var ip = _ipController.value.text;
+    int port = int.parse(_portController.value.text.trim());
+    var ip = _ipController.value.text.trim();
 
     connectTo(ip, port);
   }
@@ -75,8 +75,8 @@ class _SocketScreenState extends State<SocketScreen> {
     Socket.connect(ip, port).then((Socket sock) {
       socket = sock;
       socket.listen(dataHandler,
-          onError: errorHandler, onDone: doneHandler, cancelOnError: true);
-    }).catchError((AsyncError e) {
+          onError: errorHandler, onDone: doneHandler, cancelOnError: false);
+    }).catchError((Object e) {
       print("Unable to connect: $e");
     });
   }
@@ -90,7 +90,7 @@ class _SocketScreenState extends State<SocketScreen> {
     scrollDown();
   }
 
-  void errorHandler(error, StackTrace trace) {
+  void errorHandler(error, StackTrace trace){
     print(error);
   }
 
