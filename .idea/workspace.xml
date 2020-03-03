@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="451bdc65-578f-4f16-8255-c9d285a6ea39" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/socketScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/socketScreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/wifiScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/wifiScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +56,8 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -97,6 +90,12 @@
       <workItem from="1582903606839" duration="1879000" />
       <workItem from="1583056200098" duration="2444000" />
       <workItem from="1583059968019" duration="3434000" />
+      <workItem from="1583175588664" duration="2899000" />
+      <workItem from="1583178519005" duration="47000" />
+      <workItem from="1583178662155" duration="1857000" />
+      <workItem from="1583180730441" duration="1456000" />
+      <workItem from="1583190913954" duration="74000" />
+      <workItem from="1583258504383" duration="2003000" />
     </task>
     <servers />
   </component>
@@ -121,10 +120,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582903148299" />
-    <state x="449" y="140" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583056230105">
+    <state x="449" y="140" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583176481198">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="449" y="140" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583056230105" />
+    <state x="449" y="140" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583176481198" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582842035770">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -141,30 +140,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="468" height="466" key="DebuggerActiveHint/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582841759691" />
-    <state x="549" y="166" key="FileChooserDialogImpl" timestamp="1582903025696">
+    <state x="549" y="166" key="FileChooserDialogImpl" timestamp="1583176242429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="166" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582903025696" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1583061694168">
+    <state x="549" y="166" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583176242429" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1583259698902">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583061694168" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1583061694167">
+    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583259698902" />
+    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1583259698902">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583061694167" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1583061694167">
+    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583259698902" />
+    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1583259698902">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583061694167" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1583061694167">
+    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583259698902" />
+    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1583259698902">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583061694167" />
-    <state x="277" y="54" key="SettingsEditor" timestamp="1582887726218">
+    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583259698902" />
+    <state x="216" y="61" width="1038" height="707" key="SettingsEditor" timestamp="1583259586950">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="54" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1582818678133" />
+    <state x="216" y="61" width="1038" height="707" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583259586950" />
     <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582887726218" />
+    <state x="93" y="93" width="1350" height="638" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1583259587773">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583259587773" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1583258538324">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1583258538324" />
   </component>
 </project>

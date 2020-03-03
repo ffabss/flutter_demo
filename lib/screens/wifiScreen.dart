@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wifi_configuration/wifi_configuration.dart';
-import 'package:wifi_configuration/wifi_configuration.dart';
 import 'package:location/location.dart';
 
 class WifiRoute extends StatefulWidget {
