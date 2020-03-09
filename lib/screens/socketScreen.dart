@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -23,7 +24,7 @@ class Message {
 
 class _SocketScreenState extends State<SocketScreen> {
   final List<Message> messages =
-      new List.of([new Message("You", "seas"), new Message("NoYou", "seas")]);
+      new List();
   final myController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
 
@@ -82,8 +83,8 @@ class _SocketScreenState extends State<SocketScreen> {
   }
 
   void dataHandler(data) {
-    var text = new String.fromCharCodes(data).trim();
-    var msg = new Message("NoYou", text);
+    var text = utf8.decode(data);
+    var msg = new Message("Other", text);
     setState(() {
       messages.add(msg);
     });
@@ -114,8 +115,7 @@ class _SocketScreenState extends State<SocketScreen> {
   }
 void scrollDown(){
   // _scrollController.jumpTo(100.0 * messages.length);
-  Timer(Duration(milliseconds: 10),()=>_scrollController.jumpTo(_scrollController.position.maxScrollExtent));
-
+  Timer(Duration(milliseconds: 15),()=>_scrollController.jumpTo(_scrollController.position.maxScrollExtent));
 }
   @override
   Widget build(BuildContext context) {
