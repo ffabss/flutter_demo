@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/screens/homeSchauer.dart';
 import 'package:flutter_demo/screens/socketScreen.dart';
 import 'package:flutter_demo/screens/wifiScreen.dart';
 import 'package:flutter_demo/screens/routeScreen.dart';
@@ -16,6 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   Color _activeColor = Colors.lightGreen;
 
   List<Widget> _widgetOptions = <Widget>[
+    HomeSchauer(),
     HomePage(),
     WifiRoute(),
     SocketScreen(),
@@ -39,6 +41,17 @@ class _MainScreenState extends State<MainScreen> {
             title: Text('HOME'),
             activeIcon: Icon(
               Feather.home,
+              color: _activeColor,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome.pencil,
+              color: _inactiveColor,
+            ),
+            title: Text('HOME'),
+            activeIcon: Icon(
+              FontAwesome.pencil,
               color: _activeColor,
             ),
           ),
