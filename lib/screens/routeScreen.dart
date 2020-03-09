@@ -19,6 +19,8 @@ final DoubleRef sliderValX = new DoubleRef(50);
 double width = 1;
 double height = 1;
 
+bool helperLinesActivated = false;
+
 var points = <XYPoint>[
   new XYPoint(100, 100),
   new XYPoint(200, 100),
@@ -31,7 +33,9 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  bool areSettingsVisible = false;
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -46,14 +50,56 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
               children: <Widget>[
                 CanvasScreen(),
                 DragView(),
+                Visibility(
+                  visible: areSettingsVisible,
+                  child: Container(
+                    color: Color.fromRGBO(250, 250, 250, 0.95),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 60,
+                        ),
+                        Text('X Axis'),
+                        CustomSlider(sliderValX),
+                        Text('Y Axis'),
+                        CustomSlider(sliderValY),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+
+                            FloatingActionButton.extended(
+                              onPressed: () {
+                                setState(() {
+                                  helperLinesActivated = !helperLinesActivated;
+                                  _repaintNotifier.value += 1;
+                                });
+                              },
+                              label: Text(helperLinesActivated ? 'Hilfslinien ausschalten' : 'Hilfslinien einschalten'),
+                              icon: Icon(Icons.line_weight),
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.red,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
-          Text('X Axis'),
-          CustomSlider(sliderValX),
-          Text('Y Axis'),
-          CustomSlider(sliderValY),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          setState(() {
+            areSettingsVisible = !areSettingsVisible;
+          });
+        },
+        label: Text('Settings'),
+        icon: Icon(Icons.settings),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.red,
       ),
     );
   }
@@ -83,6 +129,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
 
 class Painter extends CustomPainter {
   Paint _paint;
+  Paint _paintHelperLine;
 
   Painter() : super(repaint: _repaintNotifier) {
     _paint = Paint()
@@ -90,15 +137,33 @@ class Painter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 4;
+
+    _paintHelperLine = Paint()
+      ..color = Color.fromRGBO(40, 40, 40, 0.5)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 1;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    var r = new Random();
     for (int i = 0; i < 3; i++) {
       canvas.drawLine(XYtoOffset(points[i]), XYtoOffset(points[i + 1]), _paint);
     }
     canvas.drawLine(XYtoOffset(points[3]), XYtoOffset(points[0]), _paint);
+
+    if (helperLinesActivated) {
+      for (int i = 1; i <= xAxisClippingSteps; i++) {
+        double xStep = width / (xAxisClippingSteps + 1);
+        canvas.drawLine(
+            Offset(xStep * i, 0), Offset(xStep * i, height), _paintHelperLine);
+      }
+      for (int i = 1; i <= yAxisClippingSteps; i++) {
+        double yStep = height / (yAxisClippingSteps + 2);
+        canvas.drawLine(
+            Offset(0, yStep * i), Offset(width, yStep * i), _paintHelperLine);
+      }
+    }
   }
 
   @override
@@ -206,37 +271,17 @@ class _DragState extends State<DraggableWidget> {
 
   Offset position = Offset(0.0, 0.0);
   Offset dragPosition = Offset(0, 0);
-  List<Offset> validPoints = new List();
 
   @override
   void initState() {
     super.initState();
     position = widget.initPos;
-    validPoints = _initPoints();
-    sliderValY.listenable.addListener((){
+    sliderValY.listenable.addListener(() {
       yAxisClippingSteps = sliderValY.value.round();
-      validPoints = _initPoints();
     });
-    sliderValX.listenable.addListener((){
+    sliderValX.listenable.addListener(() {
       xAxisClippingSteps = sliderValX.value.round();
-      validPoints = _initPoints();
     });
-  }
-
-  List<Offset> _initPoints() {
-    double xStep = width / (xAxisClippingSteps + 1);
-    double yStep = height / (yAxisClippingSteps + 2);
-
-    print(xStep);
-
-    List<Offset> temp = new List<Offset>();
-    new List<int>.generate(xAxisClippingSteps, (i) => i).forEach((i) {
-      temp.addAll(List.generate(
-          yAxisClippingSteps,
-          (index) => Offset(
-              ((i + 1) * xStep).toDouble(), ((index + 1) * yStep).toDouble())));
-    });
-    return temp;
   }
 
   void _onPointerMove(PointerMoveEvent event) {
@@ -260,14 +305,29 @@ class _DragState extends State<DraggableWidget> {
     position = validatePos(dragPosition);
   }
 
-  int _totalDistance(Offset a, Offset b) {
-    Offset tmp = (a.dx + a.dy) > (b.dx + b.dy) ? a - b : b - a;
-    return (tmp.dx.abs() + tmp.dy.abs()).round();
-  }
-
   Offset validatePos(Offset position) {
-    validPoints.sort(
-        (a, b) => _totalDistance(a, position) - _totalDistance(b, position));
-    return validPoints.first;
+    double xStepWidth = width / (xAxisClippingSteps + 1);
+    double yStepHeight = height / (yAxisClippingSteps + 2);
+    double xStep = position.dx / xStepWidth;
+    double yStep = position.dy / yStepHeight;
+
+    double xHigher = xStep.ceilToDouble() * xStepWidth;
+    double xLower = xStep.floorToDouble() * xStepWidth;
+    double yHigher = yStep.ceilToDouble() * yStepHeight;
+    double yLower = yStep.floorToDouble() * yStepHeight;
+
+    if(xStep - xLower < xHigher - xStep){
+      if(yStep - yLower < yHigher - yStep){
+        return Offset(xLower, yLower);
+      }else{
+        return Offset(xLower, yHigher);
+      }
+    }else{
+      if(yStep - yLower < yHigher - yStep){
+        return Offset(xHigher, yLower);
+      }else{
+        return Offset(xHigher, yHigher);
+      }
+    }
   }
 }
