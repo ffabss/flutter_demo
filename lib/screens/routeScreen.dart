@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:expandable_bottom_bar/expandable_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/models/XYPoint.dart';
@@ -48,6 +47,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                 DragView(),
               ],
             ),
+          ),
+          Container(
+            height: 200,
           ),
           Text('X Axis'),
           CustomSlider(sliderValX),
