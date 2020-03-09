@@ -8,18 +8,19 @@ import 'package:flutter_demo/models/dataTypeReferences.dart';
 import 'package:flutter_demo/models/slider.dart';
 
 final ValueNotifier<int> _repaintNotifier = ValueNotifier<int>(0);
-final double dragItemSize = 36;
+final double dragItemSize = 18;
 
 int xAxisClippingSteps = 10;
 int yAxisClippingSteps = 10;
 
-final DoubleRef sliderValY = new DoubleRef(50);
-final DoubleRef sliderValX = new DoubleRef(50);
+final DoubleRef sliderValY = new DoubleRef(10);
+final DoubleRef sliderValX = new DoubleRef(10);
 
 double width = 1;
 double height = 1;
 
 bool helperLinesActivated = false;
+bool clippingSystemActivated = false;
 
 var points = <XYPoint>[
   new XYPoint(100, 100),
@@ -63,10 +64,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         CustomSlider(sliderValX),
                         Text('Y Axis'),
                         CustomSlider(sliderValY),
+                        Container(
+                          height: 20,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-
                             FloatingActionButton.extended(
                               onPressed: () {
                                 setState(() {
@@ -74,7 +77,32 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   _repaintNotifier.value += 1;
                                 });
                               },
-                              label: Text(helperLinesActivated ? 'Hilfslinien ausschalten' : 'Hilfslinien einschalten'),
+                              label: Text(helperLinesActivated
+                                  ? 'Hilfslinien ausschalten'
+                                  : 'Hilfslinien einschalten'),
+                              icon: Icon(Icons.line_weight),
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.red,
+                            ),
+                          ],
+                        ),
+                        Container(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            FloatingActionButton.extended(
+                              onPressed: () {
+                                setState(() {
+                                  clippingSystemActivated =
+                                      !clippingSystemActivated;
+                                  _repaintNotifier.value += 1;
+                                });
+                              },
+                              label: Text(clippingSystemActivated
+                                  ? 'Clipping-System ausschalten'
+                                  : 'Clipping-System einschalten'),
                               icon: Icon(Icons.line_weight),
                               foregroundColor: Colors.white,
                               backgroundColor: Colors.red,
@@ -159,7 +187,7 @@ class Painter extends CustomPainter {
             Offset(xStep * i, 0), Offset(xStep * i, height), _paintHelperLine);
       }
       for (int i = 1; i <= yAxisClippingSteps; i++) {
-        double yStep = height / (yAxisClippingSteps + 2);
+        double yStep = height / (yAxisClippingSteps + 1);
         canvas.drawLine(
             Offset(0, yStep * i), Offset(width, yStep * i), _paintHelperLine);
       }
@@ -218,7 +246,7 @@ class DragItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      IconData(58731, fontFamily: 'MaterialIcons'),
+      Icons.fiber_manual_record,
       size: dragItemSize,
       color: Colors.black.withOpacity(opacity),
     );
@@ -306,28 +334,32 @@ class _DragState extends State<DraggableWidget> {
   }
 
   Offset validatePos(Offset position) {
-    double xStepWidth = width / (xAxisClippingSteps + 1);
-    double yStepHeight = height / (yAxisClippingSteps + 2);
-    double xStep = position.dx / xStepWidth;
-    double yStep = position.dy / yStepHeight;
+    if(clippingSystemActivated) {
+      double xStepWidth = width / (xAxisClippingSteps + 1);
+      double yStepHeight = height / (yAxisClippingSteps + 1);
+      double xStep = position.dx / xStepWidth;
+      double yStep = position.dy / yStepHeight;
 
-    double xHigher = xStep.ceilToDouble() * xStepWidth;
-    double xLower = xStep.floorToDouble() * xStepWidth;
-    double yHigher = yStep.ceilToDouble() * yStepHeight;
-    double yLower = yStep.floorToDouble() * yStepHeight;
+      double xHigher = xStep.ceilToDouble();
+      double xLower = xStep.floorToDouble();
+      double yHigher = yStep.ceilToDouble();
+      double yLower = yStep.floorToDouble();
 
-    if(xStep - xLower < xHigher - xStep){
-      if(yStep - yLower < yHigher - yStep){
-        return Offset(xLower, yLower);
-      }else{
-        return Offset(xLower, yHigher);
+      if (xStep - xLower < xHigher - xStep) {
+        if (yStep - yLower < yHigher - yStep) {
+          return Offset(xLower * xStepWidth, yLower * yStepHeight);
+        } else {
+          return Offset(xLower * xStepWidth, yHigher * yStepHeight);
+        }
+      } else {
+        if (yStep - yLower < yHigher - yStep) {
+          return Offset(xHigher * xStepWidth, yLower * yStepHeight);
+        } else {
+          return Offset(xHigher * xStepWidth, yHigher * yStepHeight);
+        }
       }
     }else{
-      if(yStep - yLower < yHigher - yStep){
-        return Offset(xHigher, yLower);
-      }else{
-        return Offset(xHigher, yHigher);
-      }
+      return position;
     }
   }
 }
