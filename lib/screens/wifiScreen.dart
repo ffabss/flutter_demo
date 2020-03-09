@@ -12,6 +12,8 @@ class _WifiRouteState extends State<WifiRoute> {
   Location location = new Location();
   List items = new List();
 
+  var _mainColor = Colors.lightGreen;
+
   void updateList(List<dynamic> items) {
     setState(() {
       this.items = items;
@@ -39,6 +41,7 @@ class _WifiRouteState extends State<WifiRoute> {
         buttons: [
           DialogButton(
             onPressed: () => Navigator.pop(context),
+            color: _mainColor,
             child: Text(
               "Connect",
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -60,35 +63,37 @@ class _WifiRouteState extends State<WifiRoute> {
         padding: const EdgeInsets.all(8),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-              decoration: new BoxDecoration(
-                  color: Colors.green[((index % 10) + 1) * 100],
-                  borderRadius:
-                      new BorderRadius.all(new Radius.circular(10.0))),
-              height: 50,
-              //  child: Center(child: Text('${items[index]}')),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: new Icon(Icons.wifi),
-                    onPressed: () => connectTo(index),
-                  ),
-                  Text('${items[index]}'),
-                ],
-              ));
+          return GestureDetector(
+              onTap: () => connectTo(index),
+              child: Container(
+                  decoration: new BoxDecoration(
+                      color: Colors.green[((index % 10) + 1) * 100],
+                      borderRadius:
+                          new BorderRadius.all(new Radius.circular(10.0))),
+                  height: 50,
+                  //  child: Center(child: Text('${items[index]}')),
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: new Icon(Icons.wifi),
+                        onPressed: () => connectTo(index),
+                      ),
+                      Text('${items[index]}'),
+                    ],
+                  )));
         },
         separatorBuilder: (BuildContext context, int index) => const Divider(),
       )),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          if(!await verifyLocationStatus()){
+          if (!await verifyLocationStatus()) {
             return;
           }
           setState(() {
             WifiConfiguration.getWifiList().then((value) => updateList(value));
           });
         },
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: _mainColor,
         child: Icon(Icons.network_wifi),
       ),
     );

@@ -23,8 +23,9 @@ class Message {
 }
 
 class _SocketScreenState extends State<SocketScreen> {
-  final List<Message> messages =
-      new List();
+  var _mainColor = Colors.lightGreen;
+
+  final List<Message> messages = new List();
   final myController = TextEditingController();
   final ScrollController _scrollController = new ScrollController();
 
@@ -58,6 +59,7 @@ class _SocketScreenState extends State<SocketScreen> {
         buttons: [
           DialogButton(
             onPressed: () => Navigator.pop(context),
+            color: _mainColor,
             child: Text(
               "Connect",
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -65,7 +67,8 @@ class _SocketScreenState extends State<SocketScreen> {
           )
         ]);
     await alert.show();
-    if(_portController.value.text.isEmpty || _ipController.value.text.isEmpty)return;
+    if (_portController.value.text.isEmpty || _ipController.value.text.isEmpty)
+      return;
     int port = int.parse(_portController.value.text.trim());
     var ip = _ipController.value.text.trim();
 
@@ -91,7 +94,7 @@ class _SocketScreenState extends State<SocketScreen> {
     scrollDown();
   }
 
-  void errorHandler(error, StackTrace trace){
+  void errorHandler(error, StackTrace trace) {
     print(error);
   }
 
@@ -113,10 +116,15 @@ class _SocketScreenState extends State<SocketScreen> {
     myController.clear();
     scrollDown();
   }
-void scrollDown(){
-  // _scrollController.jumpTo(100.0 * messages.length);
-  Timer(Duration(milliseconds: 15),()=>_scrollController.jumpTo(_scrollController.position.maxScrollExtent));
-}
+
+  void scrollDown() {
+    // _scrollController.jumpTo(100.0 * messages.length);
+    Timer(
+        Duration(milliseconds: 15),
+        () => _scrollController
+            .jumpTo(_scrollController.position.maxScrollExtent));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
