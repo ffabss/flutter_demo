@@ -328,8 +328,13 @@ class _DragState extends State<DraggableWidget> {
   }
 
   void _onPointerUp(PointerUpEvent event) {
-    dragPosition += event.delta;
-    position = validatePos(dragPosition);
+    setState(() {
+      dragPosition += event.delta;
+      position = validatePos(dragPosition);
+      point.x = position.dx;
+      point.y = position.dy;
+      _repaintNotifier.value += 1;
+    });
   }
 
   Offset validatePos(Offset position) {
