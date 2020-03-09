@@ -1,10 +1,23 @@
 import 'dart:math';
 
+import 'package:expandable_bottom_bar/expandable_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/models/XYPoint.dart';
+import 'package:flutter_demo/models/dataTypeReferences.dart';
+import 'package:flutter_demo/models/slider.dart';
 
 final ValueNotifier<int> _repaintNotifier = ValueNotifier<int>(0);
+final double dragItemSize = 36;
+
+int xAxisClippingSteps = 10;
+int yAxisClippingSteps = 10;
+
+final DoubleRef sliderValY = new DoubleRef(50);
+final DoubleRef sliderValX = new DoubleRef(50);
+
+double width = 1;
+double height = 1;
 
 var points = <XYPoint>[
   new XYPoint(100, 100),
@@ -18,19 +31,30 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+    print(width);
+
     return Scaffold(
-      body: Center(
-          child: Stack(
+      body: Column(
         children: <Widget>[
-          CanvasScreen(),
-          Container(
-            child: DragView(),
+          Expanded(
+            child: Stack(
+              children: <Widget>[
+                CanvasScreen(),
+                DragView(),
+              ],
+            ),
           ),
+          Text('X Axis'),
+          CustomSlider(sliderValX),
+          Text('Y Axis'),
+          CustomSlider(sliderValY),
         ],
-      )),
+      ),
     );
   }
 }
@@ -74,9 +98,6 @@ class Painter extends CustomPainter {
     for (int i = 0; i < 3; i++) {
       canvas.drawLine(XYtoOffset(points[i]), XYtoOffset(points[i + 1]), _paint);
     }
-    //Offset first = new Offset(r.nextDouble() * 100 + 50, points[0].y);
-    //Offset last = new Offset(points[3].x, points[3].y);
-    //canvas.drawLine(last, first, _paint);
     canvas.drawLine(XYtoOffset(points[3]), XYtoOffset(points[0]), _paint);
   }
 
@@ -104,6 +125,8 @@ class DragView extends StatefulWidget {
 }
 
 class _ViewState extends State<DragView> {
+  //List<DraggableWidget> draggableWidgets = List.generate(points.length, (index) => new DraggableWidget(points[index]));
+
   List<DraggableWidget> draggableWidgets = <DraggableWidget>[
     DraggableWidget(points[0]),
     DraggableWidget(points[1]),
@@ -131,7 +154,7 @@ class DragItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       IconData(58731, fontFamily: 'MaterialIcons'),
-      size: 36,
+      size: dragItemSize,
       color: Colors.black.withOpacity(opacity),
     );
   }
@@ -139,56 +162,44 @@ class DragItem extends StatelessWidget {
 
 class DraggableWidget extends StatefulWidget {
   Offset initPos;
+  XYPoint point;
 
   DraggableWidget(XYPoint point) {
     this.point = point;
-    initPos = Offset(point.x, point.y);
+    initPos = new Offset(point.x, point.y);
   }
-
-  XYPoint point;
 
   @override
   _DragState createState() => _DragState(point);
 }
 
 class _DragState extends State<DraggableWidget> {
+  XYPoint point;
+
   _DragState(XYPoint point) {
     this.point = point;
   }
 
-  XYPoint point;
-
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      onPointerMove: _onPointerMove,
-      onPointerDown: _onPointerDown,
-      onPointerUp: _onPointerUp,
-      child: Draggable(
-        child: Container(
-          padding: EdgeInsets.only(top: point.y - 18, left: point.x - 18),
-          child: DragItem(1),
+    return Positioned(
+      left: position.dx - dragItemSize / 2,
+      top: position.dy - dragItemSize / 2,
+      child: Listener(
+        onPointerMove: _onPointerMove,
+        onPointerDown: _onPointerDown,
+        onPointerUp: _onPointerUp,
+        child: Draggable(
+          child: Container(
+            child: DragItem(1),
+          ),
+          feedback: Container(
+            child: DragItem(0.4),
+          ),
+          childWhenDragging: Container(
+            child: DragItem(1),
+          ),
         ),
-        feedback: Container(
-          padding: EdgeInsets.only(top: point.y - 18, left: point.x - 18),
-          child: DragItem(0.4),
-        ),
-        childWhenDragging: Container(
-          padding: EdgeInsets.only(top: point.y - 18, left: point.x - 18),
-          child: DragItem(1),
-        ),
-        onDragCompleted: () {},
-        onDragEnd: (drag) {
-          setState(() {
-            point.y = point.y + drag.offset.dy < 0
-                ? 0
-                : point.y + drag.offset.dy - 18;
-            point.x = point.x + drag.offset.dx < 0
-                ? 0
-                : point.x + drag.offset.dx - 18;
-          });
-          _repaintNotifier.value += 1;
-        },
       ),
     );
   }
@@ -202,26 +213,39 @@ class _DragState extends State<DraggableWidget> {
     super.initState();
     position = widget.initPos;
     validPoints = _initPoints();
+    sliderValY.listenable.addListener((){
+      yAxisClippingSteps = sliderValY.value.round();
+      validPoints = _initPoints();
+    });
+    sliderValX.listenable.addListener((){
+      xAxisClippingSteps = sliderValX.value.round();
+      validPoints = _initPoints();
+    });
   }
 
   List<Offset> _initPoints() {
-    List<Offset> tmp = List.generate(10, (index) {
-      return Offset((index * 10).toDouble(), (index * 100).toDouble());
-    });
-    tmp.addAll(List.generate(10, (index) {
-      return Offset((index * 10 + 100).toDouble(), (index * 100).toDouble());
-    }));
-    tmp.addAll(List.generate(10, (index) {
-      return Offset((index * 10 + 200).toDouble(), (index * 100).toDouble());
-    }));
+    double xStep = width / (xAxisClippingSteps + 1);
+    double yStep = height / (yAxisClippingSteps + 2);
 
-    return tmp;
+    print(xStep);
+
+    List<Offset> temp = new List<Offset>();
+    new List<int>.generate(xAxisClippingSteps, (i) => i).forEach((i) {
+      temp.addAll(List.generate(
+          yAxisClippingSteps,
+          (index) => Offset(
+              ((i + 1) * xStep).toDouble(), ((index + 1) * yStep).toDouble())));
+    });
+    return temp;
   }
 
   void _onPointerMove(PointerMoveEvent event) {
     setState(() {
       dragPosition += event.delta;
       position = validatePos(dragPosition);
+      point.x = position.dx;
+      point.y = position.dy;
+      _repaintNotifier.value += 1;
     });
   }
 
