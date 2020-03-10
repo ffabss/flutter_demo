@@ -23,6 +23,8 @@ double height = 1;
 bool helperLinesActivated = true;
 bool clippingSystemActivated = true;
 
+double _scale = 1;
+
 var points = <XYPoint>[
   new XYPoint(100, 100),
   new XYPoint(200, 100),
@@ -50,8 +52,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Expanded(
             child: Stack(
               children: <Widget>[
-                CanvasScreen(),
-                DragView(),
+                GestureDetector(
+                  onScaleUpdate: _onScaleUpdate,
+                  child: Stack(
+                    children: <Widget>[
+                      CanvasScreen(),
+                      DragView(),
+                    ],
+                  ),
+                ),
                 Visibility(
                   visible: areSettingsVisible,
                   child: Container(
@@ -132,6 +141,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     );
   }
+
+  void _onScaleUpdate(ScaleUpdateDetails event) {
+    print('bro we are scaling');
+    //return
+    return;
+    _scale = event.scale;
+    _repaintNotifier.value += 1;
+  }
 }
 
 // //
@@ -176,6 +193,7 @@ class Painter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    canvas.scale(_scale);
     for (int i = 0; i < 3; i++) {
       canvas.drawLine(XYtoOffset(points[i]), XYtoOffset(points[i + 1]), _paint);
     }
@@ -241,8 +259,9 @@ class _ViewState extends State<DragView> {
 
 class DragItem extends StatelessWidget {
   double opacity;
+  bool isSelected;
 
-  DragItem(this.opacity);
+  DragItem(this.opacity, this.isSelected);
 
   @override
   Widget build(BuildContext context) {
@@ -269,6 +288,7 @@ class DraggableWidget extends StatefulWidget {
 
 class _DragState extends State<DraggableWidget> {
   XYPoint point;
+  bool isSelected = false;
 
   _DragState(XYPoint point) {
     this.point = point;
@@ -285,13 +305,13 @@ class _DragState extends State<DraggableWidget> {
         onPointerUp: _onPointerUp,
         child: Draggable(
           child: Container(
-            child: DragItem(1),
+            child: DragItem(1, isSelected),
           ),
           feedback: Container(
-            child: DragItem(0.4),
+            child: DragItem(0.4, isSelected),
           ),
           childWhenDragging: Container(
-            child: DragItem(1),
+            child: DragItem(1, isSelected),
           ),
         ),
       ),
@@ -326,6 +346,7 @@ class _DragState extends State<DraggableWidget> {
   void _onPointerDown(PointerDownEvent event) {
     setState(() {
       dragPosition = position;
+      isSelected = true;
     });
   }
 
@@ -340,7 +361,7 @@ class _DragState extends State<DraggableWidget> {
   }
 
   Offset validatePos(Offset position) {
-    if(clippingSystemActivated) {
+    if (clippingSystemActivated) {
       double xStepWidth = width / (xAxisClippingSteps + 1);
       double yStepHeight = height / (yAxisClippingSteps + 1);
       double xStep = position.dx / xStepWidth;
@@ -364,7 +385,7 @@ class _DragState extends State<DraggableWidget> {
           return Offset(xHigher * xStepWidth, yHigher * yStepHeight);
         }
       }
-    }else{
+    } else {
       return position;
     }
   }
