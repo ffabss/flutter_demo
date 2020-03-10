@@ -14,6 +14,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
           centerTitle: true, // this is all you need
           title: Text("Schauer"),
@@ -73,7 +74,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                 reverse: false,
                 children: <Widget>[
                   ButtonRedBorder(
-                    iconToUse: FontAwesome.pencil,
+                    iconToUse: FontAwesome5Solid.pencil_ruler,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -82,7 +83,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome.pencil,
+                    iconToUse: FontAwesome5Solid.pencil_ruler,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -91,7 +92,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome.pencil,
+                    iconToUse: FontAwesome5Solid.pencil_ruler,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -100,7 +101,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome.wifi,
+                    iconToUse: FontAwesome5Solid.wifi,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -109,7 +110,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome.wifi,
+                    iconToUse: FontAwesome5Solid.wifi,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -118,7 +119,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome.wifi,
+                    iconToUse: FontAwesome5Solid.wifi,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -127,7 +128,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.ad,
+                    iconToUse: FontAwesome5Solid.terminal,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -136,7 +137,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.ad,
+                    iconToUse: FontAwesome5Solid.terminal,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -145,7 +146,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                     },
                   ),
                   ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.ad,
+                    iconToUse: FontAwesome5Solid.terminal,
                     onPressed: () {
                       Navigator.push(
                         context,
