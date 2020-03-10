@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SocketScreen extends StatefulWidget {
@@ -106,7 +108,10 @@ class _SocketScreenState extends State<SocketScreen> {
       connect();
       return;
     }
+    if(myController.value.text.toString().trim().length == 0)return;
+
     var msg = new Message("You", myController.value.text.toString());
+
     setState(() {
       messages.add(msg);
     });
@@ -127,47 +132,51 @@ class _SocketScreenState extends State<SocketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: ListView.separated(
-        controller: _scrollController,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
-        itemCount: messages.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            decoration: new BoxDecoration(
-                color: messages[index].sender == "You"
-                    ? Colors.grey
-                    : Colors.red,
-                borderRadius: new BorderRadius.all(new Radius.circular(10.0))),
-            padding: EdgeInsets.all(10),
-            child: Text('${messages[index]}'),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-      )),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: <Widget>[
-            Expanded(
-                child: TextField(
-                  style: TextStyle(fontSize: 18),
-              controller: myController,
-              onSubmitted: (str) => send(),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                  hintText: 'Enter a message',
-                  contentPadding: EdgeInsets.all(10)),
-            )),
-            IconButton(
-              iconSize: 30,
+        body: Center(
+            child: ListView.separated(
+          controller: _scrollController,
+          shrinkWrap: true,
+          padding: const EdgeInsets.only(top:8,left: 8,right: 8,bottom: 16),
+
+          itemCount: messages.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              decoration: new BoxDecoration(
+                  color: messages[index].sender == "You"
+                      ? Colors.grey
+                      : Colors.red,
+                  borderRadius:
+                      new BorderRadius.all(new Radius.circular(10.0))),
               padding: EdgeInsets.all(10),
-              icon: new Icon(Icons.send,),
-              onPressed: () => send(),
-            )
-          ],
-        ),
-      ),
-    );
+              child: Text('${messages[index]}'),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+              const Divider(),
+        )),
+        bottomSheet: Container(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: TextField(
+                style: TextStyle(fontSize: 18),
+                controller: myController,
+                onSubmitted: (str) => send(),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter a message',
+                    contentPadding: EdgeInsets.all(10)),
+              )),
+              IconButton(
+                iconSize: 30,
+                padding: EdgeInsets.all(10),
+                icon: new Icon(
+                  FontAwesome.send,
+                ),
+                onPressed: () => send(),
+              )
+            ],
+          ),
+        ));
   }
 }
