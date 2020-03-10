@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/models/XYPoint.dart';
 import 'package:flutter_demo/models/dataTypeReferences.dart';
 import 'package:flutter_demo/models/slider.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 final ValueNotifier<int> _repaintNotifier = ValueNotifier<int>(0);
 final double dragItemSize = 18;
@@ -19,8 +20,8 @@ final DoubleRef sliderValX = new DoubleRef(10);
 double width = 1;
 double height = 1;
 
-bool helperLinesActivated = false;
-bool clippingSystemActivated = false;
+bool helperLinesActivated = true;
+bool clippingSystemActivated = true;
 
 var points = <XYPoint>[
   new XYPoint(100, 100),
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               label: Text(clippingSystemActivated
                                   ? 'Clipping-System ausschalten'
                                   : 'Clipping-System einschalten'),
-                              icon: Icon(Icons.line_weight),
+                              icon: Icon(FontAwesome.magnet),
                               foregroundColor: Colors.white,
                               backgroundColor: Colors.red,
                             ),
