@@ -10,13 +10,13 @@ class WifiRoute extends StatefulWidget {
 
 class _WifiRouteState extends State<WifiRoute> {
   Location location = new Location();
-  List items = new List();
+  List<String> items = new List();
 
-  var _mainColor = Colors.lightGreen;
+  var _mainColor = Colors.red;
 
   void updateList(List<dynamic> items) {
     setState(() {
-      this.items = items;
+      this.items = items.map((x) => x.toString()).toSet().toList();
     });
   }
 
@@ -41,7 +41,6 @@ class _WifiRouteState extends State<WifiRoute> {
         buttons: [
           DialogButton(
             onPressed: () => Navigator.pop(context),
-            color: _mainColor,
             child: Text(
               "Connect",
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -67,7 +66,7 @@ class _WifiRouteState extends State<WifiRoute> {
               onTap: () => connectTo(index),
               child: Container(
                   decoration: new BoxDecoration(
-                      color: Colors.green[((index % 10) + 1) * 100],
+                      color: Colors.grey[((index % 10) + 3) * 100],
                       borderRadius:
                           new BorderRadius.all(new Radius.circular(10.0))),
                   height: 50,

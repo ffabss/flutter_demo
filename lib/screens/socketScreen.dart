@@ -23,7 +23,7 @@ class Message {
 }
 
 class _SocketScreenState extends State<SocketScreen> {
-  var _mainColor = Colors.lightGreen;
+  var _mainColor = Colors.red;
 
   final List<Message> messages = new List();
   final myController = TextEditingController();
@@ -59,7 +59,6 @@ class _SocketScreenState extends State<SocketScreen> {
         buttons: [
           DialogButton(
             onPressed: () => Navigator.pop(context),
-            color: _mainColor,
             child: Text(
               "Connect",
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -139,7 +138,7 @@ class _SocketScreenState extends State<SocketScreen> {
             decoration: new BoxDecoration(
                 color: messages[index].sender == "You"
                     ? Colors.grey
-                    : Colors.lightGreen,
+                    : Colors.red,
                 borderRadius: new BorderRadius.all(new Radius.circular(10.0))),
             padding: EdgeInsets.all(10),
             child: Text('${messages[index]}'),
@@ -152,15 +151,18 @@ class _SocketScreenState extends State<SocketScreen> {
           children: <Widget>[
             Expanded(
                 child: TextField(
+                  style: TextStyle(fontSize: 18),
               controller: myController,
               onSubmitted: (str) => send(),
               decoration: InputDecoration(
-                  border: InputBorder.none,
+                border: InputBorder.none,
                   hintText: 'Enter a message',
-                  contentPadding: EdgeInsets.all(5)),
+                  contentPadding: EdgeInsets.all(10)),
             )),
             IconButton(
-              icon: new Icon(Icons.send),
+              iconSize: 30,
+              padding: EdgeInsets.all(10),
+              icon: new Icon(Icons.send,),
               onPressed: () => send(),
             )
           ],

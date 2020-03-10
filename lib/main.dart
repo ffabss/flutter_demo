@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/screens/mainScreen.dart';
+
+import 'screens/homeSchauer.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MainScreen(),
+    home: HomeSchauer(),
   ));
 }
