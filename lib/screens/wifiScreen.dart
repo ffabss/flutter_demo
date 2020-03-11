@@ -4,11 +4,11 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wifi_configuration/wifi_configuration.dart';
 import 'package:location/location.dart';
 
-class WifiRoute extends StatefulWidget {
-  _WifiRouteState createState() => _WifiRouteState();
+class WifiScreen extends StatefulWidget {
+  _WifiScreenState createState() => _WifiScreenState();
 }
 
-class _WifiRouteState extends State<WifiRoute> {
+class _WifiScreenState extends State<WifiScreen> {
   Location location = new Location();
   List<String> items = new List();
 
@@ -66,7 +66,7 @@ class _WifiRouteState extends State<WifiRoute> {
               onTap: () => connectTo(index),
               child: Container(
                   decoration: new BoxDecoration(
-                      color: Colors.grey[((index % 10) + 3) * 100],
+                      color: Colors.grey[((index % 5) + 3) * 100],
                       borderRadius:
                           new BorderRadius.all(new Radius.circular(10.0))),
                   height: 50,
