@@ -25,7 +25,7 @@ class _WifiScreenState extends State<WifiScreen> {
 
     Alert alert = Alert(
         context: context,
-        title: "Connect to ${ssid}",
+        title: "Connect to $ssid",
         content: Column(
           children: <Widget>[
             TextField(
