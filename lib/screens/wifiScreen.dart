@@ -20,12 +20,12 @@ class _WifiScreenState extends State<WifiScreen> {
     });
   }
 
-  void connectTo(int index) async {
+  void connectTo(String ssid) async {
     final myController = TextEditingController();
 
     Alert alert = Alert(
         context: context,
-        title: "Connect to ${items[index].toString()}",
+        title: "Connect to ${ssid}",
         content: Column(
           children: <Widget>[
             TextField(
@@ -49,8 +49,7 @@ class _WifiScreenState extends State<WifiScreen> {
         ]);
     await alert.show();
     String pass = myController.value.toString();
-    WifiConfiguration.connectToWifi(
-        items[index], pass, "com.example.flutter_demo");
+    WifiConfiguration.connectToWifi(ssid, pass, "com.example.flutter_demo");
   }
 
   @override
@@ -63,7 +62,7 @@ class _WifiScreenState extends State<WifiScreen> {
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-              onTap: () => connectTo(index),
+              onTap: () => connectTo(items[index].toString()),
               child: Container(
                   decoration: new BoxDecoration(
                       color: Colors.grey[((index % 5) + 3) * 100],
@@ -75,7 +74,7 @@ class _WifiScreenState extends State<WifiScreen> {
                     children: <Widget>[
                       IconButton(
                         icon: new Icon(Icons.wifi),
-                        onPressed: () => connectTo(index),
+                        onPressed: () => connectTo(items[index].toString()),
                       ),
                       Text('${items[index]}'),
                     ],
