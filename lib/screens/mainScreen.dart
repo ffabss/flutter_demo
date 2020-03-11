@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/screens/canvas/robotRouteWidget.dart';
 import 'package:flutter_demo/screens/homeSchauer.dart';
 import 'package:flutter_demo/screens/socketScreen.dart';
 import 'package:flutter_demo/screens/wifiScreen.dart';
-import 'package:flutter_demo/screens/routeScreen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MainScreen extends StatefulWidget {
@@ -18,14 +18,13 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _widgetOptions = <Widget>[
     HomeSchauer(),
-    HomePage(),
+    RouteCanvas(),
     WifiRoute(),
     SocketScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
@@ -89,5 +88,4 @@ class _MainScreenState extends State<MainScreen> {
       body: _widgetOptions.elementAt(_selectedIndex),
     );
   }
-
 }
