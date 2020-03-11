@@ -8,10 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class SocketScreen extends StatefulWidget {
-  _SocketScreenState createState() => _SocketScreenState();
-}
-
 class Message {
   Message(this.sender, this.text);
 
@@ -22,6 +18,11 @@ class Message {
   String toString() {
     return "$sender:$text";
   }
+}
+
+
+class SocketScreen extends StatefulWidget {
+  _SocketScreenState createState() => _SocketScreenState();
 }
 
 class _SocketScreenState extends State<SocketScreen> {
@@ -108,7 +109,7 @@ class _SocketScreenState extends State<SocketScreen> {
       connect();
       return;
     }
-    if(myController.value.text.toString().trim().length == 0)return;
+    if (myController.value.text.toString().trim().length == 0) return;
 
     var msg = new Message("You", myController.value.text.toString());
 
@@ -122,7 +123,6 @@ class _SocketScreenState extends State<SocketScreen> {
   }
 
   void scrollDown() {
-    // _scrollController.jumpTo(100.0 * messages.length);
     Timer(
         Duration(milliseconds: 15),
         () => _scrollController
@@ -136,8 +136,7 @@ class _SocketScreenState extends State<SocketScreen> {
             child: ListView.separated(
           controller: _scrollController,
           shrinkWrap: true,
-          padding: const EdgeInsets.only(top:8,left: 8,right: 8,bottom: 16),
-
+          padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
           itemCount: messages.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(

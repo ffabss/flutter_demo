@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -30,12 +29,13 @@ var points = <XYPoint>[
   new XYPoint(100, 200),
 ];
 
-class HomePage extends StatefulWidget {
+class RouteScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _RouteScreenState createState() => _RouteScreenState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _RouteScreenState extends State<RouteScreen>
+    with TickerProviderStateMixin {
   bool areSettingsVisible = false;
 
   @override
@@ -340,7 +340,7 @@ class _DragState extends State<DraggableWidget> {
   }
 
   Offset validatePos(Offset position) {
-    if(clippingSystemActivated) {
+    if (clippingSystemActivated) {
       double xStepWidth = width / (xAxisClippingSteps + 1);
       double yStepHeight = height / (yAxisClippingSteps + 1);
       double xStep = position.dx / xStepWidth;
@@ -364,7 +364,7 @@ class _DragState extends State<DraggableWidget> {
           return Offset(xHigher * xStepWidth, yHigher * yStepHeight);
         }
       }
-    }else{
+    } else {
       return position;
     }
   }
