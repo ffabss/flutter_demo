@@ -86,7 +86,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => WifiRoute()),
+                      MaterialPageRoute(builder: (context) => WifiScreen()),
                     );
                   },
                 ),
