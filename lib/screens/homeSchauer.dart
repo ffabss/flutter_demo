@@ -71,8 +71,9 @@ class _HomeSchauerState extends State<HomeSchauer> {
               Flexible(
                   child: GridView.count(
                 crossAxisCount: 3,
-                reverse: false,
+                reverse: true,
                 children: <Widget>[
+
                   ButtonRedBorder(
                     iconToUse: FontAwesome5Solid.pencil_ruler,
                     onPressed: () {
@@ -82,24 +83,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                       );
                     },
                   ),
-                  ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.pencil_ruler,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    },
-                  ),
-                  ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.pencil_ruler,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    },
-                  ),
+
                   ButtonRedBorder(
                     iconToUse: FontAwesome5Solid.wifi,
                     onPressed: () {
@@ -109,42 +93,7 @@ class _HomeSchauerState extends State<HomeSchauer> {
                       );
                     },
                   ),
-                  ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.wifi,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => WifiRoute()),
-                      );
-                    },
-                  ),
-                  ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.wifi,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => WifiRoute()),
-                      );
-                    },
-                  ),
-                  ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.terminal,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SocketScreen()),
-                      );
-                    },
-                  ),
-                  ButtonRedBorder(
-                    iconToUse: FontAwesome5Solid.terminal,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SocketScreen()),
-                      );
-                    },
-                  ),
+
                   ButtonRedBorder(
                     iconToUse: FontAwesome5Solid.terminal,
                     onPressed: () {

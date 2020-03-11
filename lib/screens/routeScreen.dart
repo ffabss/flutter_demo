@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   : 'Hilfslinien einschalten'),
                               icon: Icon(Icons.line_weight),
                               foregroundColor: Colors.white,
-                              backgroundColor: Colors.red,
+                              backgroundColor: helperLinesActivated ? Colors.red : Color.fromRGBO(100, 100, 100, 1),
                             ),
                           ],
                         ),
@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   : 'Clipping-System einschalten'),
                               icon: Icon(FontAwesome.magnet),
                               foregroundColor: Colors.white,
-                              backgroundColor: Colors.red,
+                              backgroundColor: clippingSystemActivated ? Colors.red : Color.fromRGBO(100, 100, 100, 1),
                             ),
                           ],
                         ),
@@ -144,7 +144,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   void _onScaleUpdate(ScaleUpdateDetails event) {
     print('bro we are scaling');
-    //return
     return;
     _scale = event.scale;
     _repaintNotifier.value += 1;
@@ -203,12 +202,12 @@ class Painter extends CustomPainter {
       for (int i = 1; i <= xAxisClippingSteps; i++) {
         double xStep = width / (xAxisClippingSteps + 1);
         canvas.drawLine(
-            Offset(xStep * i, 0), Offset(xStep * i, height), _paintHelperLine);
+            Offset(xStep * i * _scale, 0), Offset(xStep * i * _scale, height * _scale), _paintHelperLine);
       }
       for (int i = 1; i <= yAxisClippingSteps; i++) {
         double yStep = height / (yAxisClippingSteps + 1);
         canvas.drawLine(
-            Offset(0, yStep * i), Offset(width, yStep * i), _paintHelperLine);
+            Offset(0, yStep * i * _scale), Offset(width * _scale, yStep * i * _scale), _paintHelperLine);
       }
     }
   }
